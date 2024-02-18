@@ -13,8 +13,10 @@
     "@react-navigation/native-stack": "^6.9.17",
     "expo": "~50.0.5",
     "expo-status-bar": "~1.11.1",
+    "lottie-react-native": "^6.6.0",
     "react": "18.2.0",
     "react-native": "0.73.2",
+    "react-native-lottie-splash-screen": "^1.1.2",
     "react-native-splash-screen": "^3.3.0"
   },
   "devDependencies": {

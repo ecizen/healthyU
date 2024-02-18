@@ -6,12 +6,20 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 import Slider from './component/Slider'
-import Login from './component/section/Login'
+import Login from './component/Login'
+import Register from './component/Register'
+import Home from './component/Home'
+import Tes from './component/Tes';
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen
+          name="Tes"
+          component={Tes}
+          options={{headerShown: false}}
+        />
       <Stack.Screen
           name="Slider"
           component={Slider}
@@ -20,6 +28,16 @@ export default function App() {
       <Stack.Screen
           name="Login"
           component={Login}
+          options={{headerShown: false}}
+        />
+      <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{headerShown: false}}
+        />
+      <Stack.Screen
+          name="Home"
+          component={Home}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

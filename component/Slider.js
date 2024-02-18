@@ -41,6 +41,12 @@ const Slider = ({navigation}) => {
       flatListRef.current.scrollToIndex({index: index + 1});
     }
   };
+  const SkipSlide =() =>{
+    if (index < Slides.length - 2){
+      flatListRef.current.scrollToIndex({index : index +2})
+    }
+
+  }
 
   const handleNavigation = () =>{
 
@@ -60,7 +66,7 @@ const Slider = ({navigation}) => {
         onViewableItemsChanged={handleOnViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
       />
-      <View style={{justifyContent: 'space-around'}}>
+      <View style={{justifyContent: 'space-around', marginTop: 40}}>
       <Pagination data={Slides} scrollX={scrollX} index={index} />
       <View style={{alignItems: 'flex-end', bottom:130, marginRight: 36, position: 'relative' }}> 
       {index < Slides.length - 1 ? (
@@ -73,6 +79,7 @@ const Slider = ({navigation}) => {
           <Text style={{fontSize: 16, fontWeight: '400', color: 'white'}}>Get Started</Text>
         </TouchableOpacity>
       )}
+    
       </View>
       </View>
 
@@ -94,6 +101,7 @@ const styles = StyleSheet.create({
   alignItems: 'center'
   
   
+  
        
   },
   buttonText: {
@@ -112,5 +120,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
 
+  },
+  skipButton:{
+   
   }
 });
