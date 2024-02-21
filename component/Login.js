@@ -56,7 +56,7 @@ const Login = ({navigation}) => {
         <TouchableOpacity style={styles.btn}><Image source={WithFacebook} style={{width: 27, height: 27}}></Image></TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', marginTop: 13}}>
-       <Text style={{color: '#938E8E'}}>Do you have not account ? </Text>
+       <Text style={{color: '#938E8E'}}>Do you have an account ? </Text>
        <TouchableOpacity><Text style={{fontWeight: 'bold', color: '#2254C5'}} onPress={GoRegister}>Register</Text></TouchableOpacity>
       </View>
       

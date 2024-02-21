@@ -12,6 +12,7 @@ import Home from './component/Home'
 import Tes from './component/Tes'
 import Profile from './component/Profile'
 import Suplement from './component/Suplement.js'
+import BMI from './component/Bmi.js'
 import Training from './component/training.js';
 
 export default function App() {
@@ -56,6 +57,11 @@ export default function App() {
       <Stack.Screen
           name="Training"
           component={Training}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="BMI"
+          component={BMI}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

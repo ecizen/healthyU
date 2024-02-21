@@ -25,7 +25,11 @@ export default function Home() {
 
     const GoTraining = () => {
       navigation.navigate('Training');
-  };
+    };
+
+    const GoBMI = () => {
+      navigation.navigate('BMI');
+    };
 
   
   return (
@@ -53,7 +57,7 @@ export default function Home() {
         <TouchableOpacity onPress={GoTraining} style={styles.menuC}><Image source={Training} style={{height: 19, width: 32}}></Image></TouchableOpacity>
         <TouchableOpacity onPress={GoSuplement} style={styles.menuC}><Image source={Suplment} style={{height: 24, width: 29}}></Image></TouchableOpacity>
         <TouchableOpacity  style={styles.menuC}><Image source={Habit} style={{height: 18, width: 27}}></Image></TouchableOpacity>
-        <TouchableOpacity style={styles.menuC}><Image source={Weight} style={{height: 32, width: 32}}></Image></TouchableOpacity>
+        <TouchableOpacity onPress={GoBMI} style={styles.menuC}><Image source={Weight} style={{height: 32, width: 32}}></Image></TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', gap: 40}}>
         <Text style={{right: 10,}}>Training</Text>
