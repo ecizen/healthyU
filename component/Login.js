@@ -21,15 +21,28 @@ import { scale } from 'react-native-size-matters';
 
 const Login = ({navigation}) => {
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const GoRegister = () =>{
     navigation.navigate('Register')
   }
   const GoHome = () =>{
     navigation.navigate('Home')
   }
-  
-  
 
+  const ValidasiLogin = (email, password) => {
+    const emailUser = 'har'
+    const passwordUser = '12345678';
+
+    if(email === emailUser && password === passwordUser) {
+      console.log('login berhasil')
+      navigation.navigate('Home')
+    } else{
+      console.log('salah')
+    }
+  }
+  
   return (
     <View style={ styles.container}>
       <View style={styles.main}>
@@ -41,13 +54,13 @@ const Login = ({navigation}) => {
       </View>
       <Title Value={"Sign In"}></Title>
       <View style={styles.text_input}>
-        <TextInput Placrholder='Username' Placrholder1='Password'></TextInput>
+        <TextInput Placrholder='Username' Placrholder1='Password' valEmail={email} valPassword={password}  EmailInput={(text) => setEmail(text)} PasswordInput={(text) => setPassword(text)}></TextInput>
       </View>
       <View style={{alignItems: 'center'}}>
-      <TouchableOpacity style={styles.btnLogin}><Text style={{ color: 'white'}} onPress={GoHome}>Sign in</Text></TouchableOpacity>
-      <Text style={{marginTop: 22,fontSize: 12 , color: '#938E8E', fontWeight: '400'}}>Or sign with</Text>
+     
+      <Text style={{marginTop: 15,fontSize: 12 , color: '#938E8E', fontWeight: '400'}}>Or sign with</Text>
       <View style={styles.loginWith}>
-        <TouchableOpacity style={styles.btn}><Image source={WithGoogle} style={{width: 24, height: 25}}></Image></TouchableOpacity>
+        <TouchableOpacity  style={styles.btn}><Image source={WithGoogle} style={{width: 24, height: 25}}></Image></TouchableOpacity>
         <TouchableOpacity style={styles.btn}><Image source={WithFacebook} style={{width: 27, height: 27}}></Image></TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', marginTop: 13}}>
@@ -91,13 +104,13 @@ const styles = StyleSheet.create({
   text_input:{
   
 
-   marginHorizontal: 23,
+   marginHorizontal: scale(23),
    
    
   },
   btnLogin:{
     width: scale(310),
-    height: 46,
+    height: scale(46),
     backgroundColor: '#2254C5',
     justifyContent: 'center',
     alignItems: 'center',
@@ -116,7 +129,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#B5B5B5',
     borderRadius: 10,
-    marginTop: 21,
+    marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center'
   }

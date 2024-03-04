@@ -21,6 +21,9 @@ export default function Profile({ navigation }) {
   const GoRemind =()=>{
     navigation.navigate('Remind')
   }
+  const GoHistory =()=>{
+    navigation.navigate('History')
+  }
   return (
     <View style={styles.container}>
       <View style={{marginTop: 0 , width: 410, height:106, borderBottomWidth: 1, borderColor: '#D6D6D6',backgroundColor: 'white', justifyContent: 'center', paddingLeft: 20}}>
@@ -58,7 +61,7 @@ export default function Profile({ navigation }) {
           </View>
           <Image source={arrow} style={{width: 29, height: 29, marginLeft: scale(70)}}></Image>
         </TouchableOpacity>
-        <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}}>
+        <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}} onPress={GoHistory}>
         <View style={{width: scale(200), flexDirection: 'row', alignItems: 'center'}}>
            <View style={{width: 35, height: 35, backgroundColor: '#407BFF', borderRadius: 5, justifyContent: 'center', alignItems: 'center'}}>
               <Image source={History} style={{width: 24, height: 24}}></Image>

@@ -9,6 +9,8 @@ import TextInput from '../Prop/Text_input2'
 import WithGoogle from '../img/Google.png'
 import WithaApple from '../img/apple.png'
 import WithFacebook from '../img/facebook.png'
+import { scale } from 'react-native-size-matters';
+
 
 
 const Slider = ({navigation}) => {
@@ -35,9 +37,9 @@ const Slider = ({navigation}) => {
       <View style={styles.text_input}>
         <TextInput Placrholder='Username' Placrholder1='Password' Placrholder3='confirm password'></TextInput>
       </View>
-      <View style={{alignItems: 'center', marginTop: 27}}>
+      <View style={{alignItems: 'center', marginTop: scale(15)}}>
       <TouchableOpacity style={styles.btnLogin}><Text style={{ color: 'white'}} onPress={GoHome}>Sign Up</Text></TouchableOpacity>
-      <Text style={{marginTop: 22,fontSize: 12 , color: '#938E8E', fontWeight: '400'}}>Continue with</Text>
+      <Text style={{marginTop: scale(10),fontSize: 12 , color: '#938E8E', fontWeight: '400'}}>Continue with</Text>
       <View style={styles.loginWith}>
         <TouchableOpacity style={styles.btn}><Image source={WithGoogle} style={{width: 24, height: 25}}></Image></TouchableOpacity>
         <TouchableOpacity style={styles.btn}><Image source={WithFacebook} style={{width: 27, height: 27}}></Image></TouchableOpacity>
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
 
   },
   main :{
-    marginTop: 23,
+    marginTop: scale(0),
    flexDirection: 'row',
    alignItems: 'center',
 
@@ -76,8 +78,8 @@ const styles = StyleSheet.create({
     height: 36
   },
   loginui:{
-    width: 220,
-    height: 215
+    width: scale(220),
+    height: scale(200)
   },
   text_input:{
     marginHorizontal: 24
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#B5B5B5',
     borderRadius: 10,
-    marginTop: 21,
+    marginTop: scale(10),
     justifyContent: 'center',
     alignItems: 'center'
   }

@@ -3,8 +3,8 @@ import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'reac
 import { useNavigation } from '@react-navigation/native';
 
 import Back from '../img/backnavigator.png';
-import circle from '../img/circle.png';
-import hitung from '../img/linearbg.png';
+import circle from '../img/circle1.png';
+import hitung from '../img/buttoni.png';
 
 const BMI = () => {
     const [bb, onChangeBB] = useState('');
@@ -53,7 +53,7 @@ const BMI = () => {
     };
 
     return (
-        <View>
+        <View style={{flex:1, backgroundColor: 'white'}}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={GoHome}>
                     <Image source={Back} style={styles.backIcon} />
@@ -67,6 +67,8 @@ const BMI = () => {
                 <Image source={circle} style={styles.circleImage} />
                 <Text style={styles.bmiValue}>{bmi !== null ? bmi : '0'}</Text>
             </View>
+            <View style={{alignItems: 'center'}}>
+            <Text style={{marginTop: 70 ,fontSize: 15, fontWeight: 'bold'}}>Anda ditetapkan {bmiCategory} oleh bmi</Text>
 
             <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Berat Badan</Text>
@@ -75,7 +77,7 @@ const BMI = () => {
                     onChangeText={onChangeBB}
                     value={bb}
                     placeholder='Berat Badan'
-                    placeholderTextColor='white'
+                    placeholderTextColor='#B9A5A5'
                     keyboardType='numeric'
                 />
                 <Text style={styles.inputLabel}>Tinggi Badan</Text>
@@ -84,7 +86,7 @@ const BMI = () => {
                     onChangeText={onChangeTB}
                     value={tb}
                     placeholder='Tinggi Badan'
-                    placeholderTextColor='white'
+                    placeholderTextColor='#B9A5A5'
                     keyboardType='numeric'
                 />
                 <Text style={styles.inputLabel}>Umur</Text>
@@ -93,12 +95,13 @@ const BMI = () => {
                     onChangeText={onChangeAGE}
                     value={umur}
                     placeholder='Umur'
-                    placeholderTextColor='white'
+                    placeholderTextColor='#B9A5A5'
                     keyboardType='numeric'
                 />
                 <TouchableOpacity onPress={hitungBMI}>
                     <Image source={hitung} style={styles.buttonImage} />
                 </TouchableOpacity>
+            </View>
             </View>
         </View>
     );
@@ -149,8 +152,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     inputContainer: {
-        alignItems: 'center',
-        marginTop: 150,
+        
+        marginTop: 10,
     },
     inputLabel: {
         fontWeight: 'bold',
@@ -160,11 +163,13 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     input: {
-        backgroundColor: '#003FCD',
+        backgroundColor: 'white',
         width: 300,
         padding: 10,
         borderRadius: 11,
-        color: 'white',
+        color: 'black',
+        borderWidth: 1,
+        borderColor: '#2254C5'
     },
     buttonImage: {
         width: 300,

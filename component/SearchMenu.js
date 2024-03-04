@@ -19,19 +19,19 @@ export default function SearchMenu({navigation}) {
     const [searchQuery, setSearchQuery] = useState();
     const [articles, setArticles] = useState([
         {
-            id:1,
+            id:'1',
             title: 'Health Benefits of Bananas pisang raja ?',
-            preview: 'The banana, scientifically known as Musa acuminata, is a versatile and delicious fruit packed with numerous health benefits.'
+            preview: 'The banana, scientifically known as Musa acuminata, is a versatile and delicious fruit packed with numerous health benefits.'
         },
         {
-            id:2,
+            id:'2',
             title: 'Health Benefits of Bananas pisang  klutuk?',
-            preview: 'The banana, scientifically known as Musa acuminata, is a versatile and delicious fruit packed with numerous health benefits.'
+            preview: 'The banana, scientifically known as Musa acuminata, is a versatile and delicious fruit packed with numerous health benefits.'
         },
         {
-            id:3,
+            id:'3',
             title: 'Health Benefits of Bananas pisang  ambon?',
-            preview: 'The banana, scientifically known as Musa acuminata, is a versatile and delicious fruit packed with numerous health benefits.'
+            preview: 'The banana, scientifically known as Musa acuminata, is a versatile and delicious fruit packed with numerous health benefits.'
         }
     ]);
   

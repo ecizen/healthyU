@@ -83,6 +83,14 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         elevation: 8,
+        // Tambahkan properti shadow di bawah
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
     },
     navItem: {
         alignItems: 'center',
@@ -99,7 +107,7 @@ const styles = StyleSheet.create({
         color: '#92959B',
     },
     activeLabel: {
-        color: 'blue',
+        color: '#2254C5',
     },
 });
 

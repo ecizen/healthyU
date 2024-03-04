@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList , Switch, TouchableOpacity, Image} from 'react-native';
 import arrow from '../img/backnavigator.png'
+import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
 
 const DATA = [
   {
@@ -30,7 +31,7 @@ const Item = ({ title, time ,day}) => (
 
     <View style={{flexDirection: 'row', alignItems: 'center', gap: 200}}>
     <Text style={styles.title}>{title}</Text>
-    <Switch></Switch>
+    <Switch  ></Switch>
     </View>
     <Text style={styles.time}>{time}</Text>
     <View style={styles.day1}>

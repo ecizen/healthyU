@@ -18,7 +18,8 @@ import SearchMenu from './component/SearchMenu.js'
 import ArtiklePage from './component/Artikel/Artikel.js'
 import Channels from './component/Channels.js'
 import Remind from './component/Remind.js';
-Remind
+import History from './component/History.js';
+
 
 export default function App() {
   return (
@@ -87,6 +88,11 @@ export default function App() {
         <Stack.Screen
           name="Remind"
           component={Remind}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="History"
+          component={History}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
