@@ -5,9 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import img1 from '../img/img1.png';
 import shield from '../img/shield.jpg';
 
-const Chat = () => {
+const MainChann = () => {
     const navigation = useNavigation();
-    const [isButtonVisible, setIsButtonVisible] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -71,13 +70,6 @@ const Chat = () => {
                     </View>
                 </TouchableOpacity>
             </ScrollView>
-            {isButtonVisible && (
-                <View style={{ height: 40, justifyContent: 'center', width: '100%', position: 'absolute', bottom: 0, backgroundColor: '#d9d9d9' }}>
-                    <TouchableOpacity onPress={GoChannels}>
-                        <Text style={{ textAlign: 'center', fontWeight: 'bold', color: '#2254C5' }}>Bergabung ke Channel Sekarang</Text>
-                    </TouchableOpacity>
-                </View>
-            )}
         </View>
     );
 };
@@ -96,4 +88,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Chat;
+export default MainChann;

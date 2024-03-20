@@ -22,6 +22,8 @@ import History from './component/History.js';
 import Chat from './component/Channels2.js'
 import Habbit from './component/Habbit.js'
 import Privacy from './component/Privacy.js'
+import mainChann from './component/mainChannels.js'
+import AddHabbit from './component/Addhabbit.js'
 
 
 export default function App() {
@@ -99,11 +101,6 @@ export default function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Chat"
-          component={Chat}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="Habbit"
           component={Habbit}
           options={{headerShown: false}}
@@ -111,6 +108,21 @@ export default function App() {
         <Stack.Screen
           name="Privacy"
           component={Privacy}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Chat"
+          component={Chat}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="main"
+          component={mainChann}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AddHabbit"
+          component={AddHabbit}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

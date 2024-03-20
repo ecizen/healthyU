@@ -131,7 +131,7 @@ export default function Home() {
               <TouchableOpacity style={styles.menuC} onPress={GoHabbit}>
                 <Image  source={Habit} style={{ height: 18, width: 27 }} />
               </TouchableOpacity>
-              <Text style={{ fontSize: 10, marginTop: 5 }}>Kalender</Text>
+              <Text style={{ fontSize: 10, marginTop: 5 }}>Habbit</Text>
             </View>
             <View style={{ alignItems: 'center' }}>
               <TouchableOpacity onPress={GoBMI} style={styles.menuC}>
