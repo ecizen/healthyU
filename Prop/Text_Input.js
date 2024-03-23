@@ -1,28 +1,51 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, TextInput, View, Image, Text , StyleSheet} from 'react-native';
+import { TouchableOpacity, TextInput, View, Image, Text , StyleSheet, Alert} from 'react-native';
 
 import Email from '../img/Vector.png';
 import Lock from '../img/Group1.png';
 import { scale } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
+import SweetAlert from 'react-native-sweet-alert';
 
 
 export default function Text_Input({ Placrholder, Placrholder1 , EmailInput, PasswordInput , valEmail, valPassword, }) {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+ const GoHome = () => {
+    navigation.navigate('Home');
+  };
 
   const handleLogin = () => {
-    // Validasi dengan data dummy
-    const UserEmail = '12345';
-    const UserPassword = '12345';
-    if (email === UserEmail && password === UserPassword) {
-      navigation.navigate('Home');
-      console.log('login berhasil')
-    } else {
-      console.log('Email atau password salah')
-    }
+    // Kirim data login ke server menggunakan metode POST
+    fetch('https://3abe-36-64-210-90.ngrok-free.app/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Login failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        Alert.alert('Login Successful', 'Welcome back!');
+        GoHome();
+        // Handle response data setelah berhasil login
+        // Contoh: menyimpan token di AsyncStorage, dll.
+      })
+      .catch(error => {
+        // Handle error jika login gagal
+        console.error('Login error:', error);
+      });
   };
+
   return (
     <View>
       {/* Image with scaled dimensions */}
@@ -30,7 +53,7 @@ export default function Text_Input({ Placrholder, Placrholder1 , EmailInput, Pas
       <Image source={Lock} style={{ width: scale(11), height: scale(14), position: 'absolute', top: scale(80) }} />
 
       {/* TextInput with scaled dimensions */}
-      <TextInput  value={email} onChangeText={(text) => setEmail(text)} style={{ width: scale(310), height: scale(46), borderBottomWidth: 1, marginTop: scale(5), borderColor: '#DFDFDF', paddingLeft: scale(20) }} placeholder={Placrholder} />
+      <TextInput  value={username} onChangeText={(text) => setUsername(text)} style={{ width: scale(310), height: scale(46), borderBottomWidth: 1, marginTop: scale(5), borderColor: '#DFDFDF', paddingLeft: scale(20) }} placeholder={Placrholder} />
       <TextInput value={password}
         onChangeText={(text) => setPassword(text)} style={{ width: scale(310), height: scale(46), borderBottomWidth: 1, marginTop: scale(12), borderColor: '#DFDFDF', paddingLeft: scale(20) }} placeholder={Placrholder1} />
 

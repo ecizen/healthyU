@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image , FlatList, SectionList} from 'react-native'
 import React from 'react'
 import { scale } from 'react-native-size-matters'
+import { useNavigation } from '@react-navigation/native'
+import Tombol2 from './Tombol2'
 
 const rekomendasi = [
     {
@@ -17,6 +19,10 @@ const rekomendasi = [
     }
 ]
 
+  
+
+
+export default function Rekomendasi({navigation}) {
   const renderItem = ({ item }) =>(
     <View style={styles.rekCard}>
             <View style={{width: scale(311), width:scale(141),justifyContent: 'center', alignItems: 'center'}}>
@@ -27,13 +33,10 @@ const rekomendasi = [
                 <Text style={styles.Judul}>{item.title}</Text>
                 <Text style={styles.subJudul}>{item.konten}</Text>
               </View>
-              <TouchableOpacity style={styles.play}><Text style={{fontSize: 12, fontWeight: '600', color: 'blue'}}>Try Now</Text></TouchableOpacity>
+              <Tombol2 pindah={() => navigation.navigate('Training')}/>
              </View>
           </View>
   )
-
-
-export default function Rekomendasi() {
   return (
     <View>
        <FlatList data={rekomendasi} renderItem={renderItem} keyExtractor={(item) => item.id}  contentContainerStyle={{gap:20}} />

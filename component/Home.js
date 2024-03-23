@@ -15,61 +15,52 @@ import Trnd from '../img/Trend.png';
 import Rekomendasi from '../Prop/Rekomendasi';
 import { scale } from 'react-native-size-matters';
 import { ScrollView } from 'react-native-virtualized-view';
-
+import Tombol from '../Prop/Tombol';
 const TRENDING = [
   {
-    id: '1',
+    id: 1,
     judul: 'your entire arm Exercise',
     deskripsi: 'Train your arms consistently to achieve aesthetic arms with the movements we provide',
     gambar: require('../img/Trend.png'),
     gambar2: require('../img/bicep.png')
   },
   {
-    id: '2',
+    id: 2,
     judul: 'your entire arm Exercise',
     deskripsi: 'Train your arms consistently to achieve aesthetic arms with the movements we provide',
     gambar: require('../img/Trend.png'),
     gambar2: require('../img/bicep.png')
   },
   {
-    id: '3',
+    id: 3,
     judul: 'your entire arm Exercise',
     deskripsi: 'Train your arms consistently to achieve aesthetic arms with the movements we provide',
     gambar: require('../img/Trend.png'),
     gambar2: require('../img/bicep.png')
   },
+  
 ];
 
-const renderItem = ({ item }) => (
-  <ImageBackground
-    source={item.gambar}
-    style={{ width: 204, height: 204, position: 'relative', paddingTop: 30, paddingLeft: 10 }}
-  >
-    <Image source={item.gambar2} style={{width: scale(75),height:scale(90), position: 'absolute', right: 0, top: 10}}></Image>
-    <Text style={{ fontSize: 15, maxWidth: 100, fontWeight: 'bold', color: 'white' }}>{item.judul}</Text>
-    <Text style={{ fontSize: 10, color: 'white', maxWidth: 120, marginTop: 10 }}>{item.deskripsi}</Text>
-    <TouchableOpacity
-      style={{
-        width: 154,
-        height: 21,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 24,
-      }}
+
+
+
+
+export default function Home({navigation}) {
+
+  const renderItem = ({ item,  }) => (
+  
+    <ImageBackground
+      source={item.gambar}
+      style={{ width: 204, height: 204, position: 'relative', paddingTop: 30, paddingLeft: 10 }}
     >
-      <Text style={{ fontWeight: 'bold', color: 'blue' }}>Start</Text>
-    </TouchableOpacity>
-  </ImageBackground>
-);
+      <Image source={item.gambar2} style={{width: scale(75),height:scale(90), position: 'absolute', right: 0, top: 10}}></Image>
+      <Text style={{ fontSize: 15, maxWidth: 100, fontWeight: 'bold', color: 'white' }}>{item.judul}</Text>
+      <Text style={{ fontSize: 10, color: 'white', maxWidth: 120, marginTop: 10 }}>{item.deskripsi}</Text>
+      <Tombol pindah={() => navigation.navigate('Training')}/>
+      
+    </ImageBackground>
+  );
 
-
-
-
-
-export default function Home() {
-  const navigation = useNavigation();
 
   const GoSuplement = () => {
     navigation.navigate('Suplement');

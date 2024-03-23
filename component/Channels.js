@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ScrollView, View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {  View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Alert, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Nav from '../component/Nav.js';
 import User from '../img/Whey.png';
@@ -7,10 +7,13 @@ import img1 from '../img/img1.png';
 import img2 from '../img/img2.png';
 import img3 from '../img/img3.png';
 import { scale } from 'react-native-size-matters';
+import { ScrollView } from 'react-native-virtualized-view';
+
 
 const Channels = () => {
     const [text, onChangeText] = React.useState('');
     const navigation = useNavigation();
+    const [data, setData] = useState([]);
 
     const GoChat = () => {
         navigation.navigate('Chat');
@@ -40,6 +43,45 @@ const Channels = () => {
         // logika keluar dari channel disini
         console.log('Left channel:', channelName);
     };
+    useEffect(() => {
+        fetchData();
+      }, []);
+      
+      const fetchData = async () => {
+        try {
+          const response = await fetch('https://96bf-112-78-156-160.ngrok-free.app/channels');
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          const responseData = await response.json();
+          setData(responseData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
+      const renderItem = ({item})=>{
+        <View>
+            <TouchableOpacity onLongPress={() => confirmLeaveChannel('Olahraga Pemula')} onPress={GoMain}>
+                        <View style={{ flexDirection: 'column', gap: 10 }}>
+                            <View style={{ paddingHorizontal: 0, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                <Image source={img1} style={{ width: 70, height: 70, borderRadius: 10 }}></Image>
+                                <View style={{ flexDirection: 'column', justifyContent: 'center', gap: 10, marginLeft: 10, marginRight: 10, width: scale(205) }}>
+                                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{item.title}</Text>
+                                    <Text numberOfLines={1} style={{ fontSize: 10, color: '#857878' }}>Jawir : Caranya push-up gimana?</Text>
+                                </View>
+                                <View style={{ flexDirection: 'column', justifyContent: 'center',  }}>
+                                    <Text style={{ fontWeight: 'bold', color: '#407BFF', fontSize: 10 }}>17.00</Text>
+                                    <View style={{ backgroundColor: '#407BFF', width: 30, height: 30, borderRadius: 100, justifyContent: 'center' }}>
+                                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 10 }}>99+</Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={{ borderBottomColor: '#d9d9d9', borderBottomWidth: 1, marginVertical: 10, marginTop: 5 }}></View>
+                        </View>
+                    </TouchableOpacity>
+        </View>
+      }
 
     return (
         <View style={styles.container}>
@@ -53,7 +95,7 @@ const Channels = () => {
                         placeholder='Search Channels'
                     />
                 </View>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     <View style={{ flexDirection: 'row', marginLeft: 22 }}>
                         <TouchableOpacity onPress={GoChat}><Image style={{ width: 68, height: 68, borderRadius: 100, marginRight: 11 }} source={User} /></TouchableOpacity>
                         <TouchableOpacity onPress={GoChat}><Image style={{ width: 68, height: 68, borderRadius: 100, marginRight: 11 }} source={User} /></TouchableOpacity>
@@ -63,18 +105,18 @@ const Channels = () => {
                         <TouchableOpacity onPress={GoChat}><Image style={{ width: 68, height: 68, borderRadius: 100, marginRight: 11 }} source={User} /></TouchableOpacity>
                         <TouchableOpacity onPress={GoChat}><Image style={{ width: 68, height: 68, borderRadius: 100, marginRight: 11 }} source={User} /></TouchableOpacity>
                     </View>
-                </ScrollView>
-                <View style={{ borderBottomColor: '#d9d9d9', borderBottomWidth: 1, marginVertical: 10, marginTop: 20 }}></View>
+                </ScrollView> */}
+                <View style={{ borderBottomColor: '#d9d9d9', borderBottomWidth: 1, marginVertical: 10, marginTop: 0 }}></View>
                 {/* chat */}
                     <TouchableOpacity onLongPress={() => confirmLeaveChannel('Olahraga Pemula')} onPress={GoMain}>
                         <View style={{ flexDirection: 'column', gap: 10 }}>
-                            <View style={{ paddingHorizontal: 30, flexDirection: 'row' }}>
+                            <View style={{ paddingHorizontal: 0, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Image source={img1} style={{ width: 70, height: 70, borderRadius: 10 }}></Image>
                                 <View style={{ flexDirection: 'column', justifyContent: 'center', gap: 10, marginLeft: 10, marginRight: 10, width: scale(205) }}>
                                     <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Olahraga Pemula</Text>
                                     <Text numberOfLines={1} style={{ fontSize: 10, color: '#857878' }}>Jawir : Caranya push-up gimana?</Text>
                                 </View>
-                                <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+                                <View style={{ flexDirection: 'column', justifyContent: 'center',  }}>
                                     <Text style={{ fontWeight: 'bold', color: '#407BFF', fontSize: 10 }}>17.00</Text>
                                     <View style={{ backgroundColor: '#407BFF', width: 30, height: 30, borderRadius: 100, justifyContent: 'center' }}>
                                         <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 10 }}>99+</Text>
@@ -84,42 +126,12 @@ const Channels = () => {
                             <View style={{ borderBottomColor: '#d9d9d9', borderBottomWidth: 1, marginVertical: 10, marginTop: 5 }}></View>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onLongPress={() => confirmLeaveChannel('WeGoGym')}  onPress={GoMain}>
-                        <View style={{ flexDirection: 'column', gap: 10 }}>
-                            <View style={{ paddingHorizontal: 30, flexDirection: 'row' }}>
-                                <Image source={img1} style={{ width: 70, height: 70, borderRadius: 10 }}></Image>
-                                <View style={{ flexDirection: 'column', justifyContent: 'center', gap: 10, marginLeft: 10, marginRight: 10, width: scale(205) }}>
-                                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>WeGoGym</Text>
-                                    <Text numberOfLines={1} style={{ fontSize: 10, color: '#857878' }}>justcevrbytse fuytesryfvtey vdnsytevfnxres hvdnytser vjctsrbfgvydrg</Text>
-                                </View>
-                                <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
-                                    <Text style={{ fontWeight: 'bold', color: '#407BFF', fontSize: 10 }}>17.00</Text>
-                                    <View style={{ backgroundColor: '#407BFF', width: 30, height: 30, borderRadius: 100, justifyContent: 'center' }}>
-                                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 10 }}>99+</Text>
-                                    </View>
-                                </View>
-                            </View>
-                            <View style={{ borderBottomColor: '#d9d9d9', borderBottomWidth: 1, marginVertical: 10, marginTop: 5 }}></View>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onLongPress={() => confirmLeaveChannel('SehatYuk!')}  onPress={GoMain}>
-                        <View style={{ flexDirection: 'column', gap: 10 }}>
-                            <View style={{ paddingHorizontal: 30, flexDirection: 'row' }}>
-                                <Image source={img1} style={{ width: 70, height: 70, borderRadius: 10 }}></Image>
-                                <View style={{ flexDirection: 'column', justifyContent: 'center', gap: 10, marginLeft: 10, marginRight: 10, width: scale(205) }}>
-                                    <Text style={{ fontWeight: 'bold', fontSize: 15 }}>SehatYuk!</Text>
-                                    <Text numberOfLines={1} style={{ fontSize: 10, color: '#857878' }}>aub7yngictersn7eubr7yeugiysfgeikyrgfi7wesgbiv7wtes</Text>
-                                </View>
-                                <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
-                                    <Text style={{ fontWeight: 'bold', color: '#407BFF', fontSize: 10 }}>17.00</Text>
-                                    <View style={{ backgroundColor: '#407BFF', width: 30, height: 30, borderRadius: 100, justifyContent: 'center' }}>
-                                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 10 }}>99+</Text>
-                                    </View>
-                                </View>
-                            </View>
-                            <View style={{ borderBottomColor: '#d9d9d9', borderBottomWidth: 1, marginVertical: 10, marginTop: 5 }}></View>
-                        </View>
-                    </TouchableOpacity>
+                    <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id.toString()}
+                    />
+                    
             </ScrollView>
             <Nav />
         </View>

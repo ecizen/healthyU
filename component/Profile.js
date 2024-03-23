@@ -33,7 +33,7 @@ export default function Profile({ navigation }) {
       <Text style={styles.hdrtext}>My Profile</Text>
       </View>
       <ScrollView>
-      <View style={{width: 410, height: 420, backgroundColor: 'white', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>
+      <View style={{width: 360, height: 250, backgroundColor: 'white', borderBottomLeftRadius: 20, borderBottomRightRadius: 20}}>
       <View style={styles.container2}>
         <View style={styles.group1}>
           <Image source={Img} style={{ width: 29, height: 32, margin: 11, }}></Image>
@@ -46,7 +46,7 @@ export default function Profile({ navigation }) {
         </View>
         </View>
         <View>
-        <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}} onPress={GoRemind}>
+        {/* <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}} onPress={GoRemind}>
         <View style={{width: scale(200), height: 24, flexDirection: 'row', alignItems: 'center'}}>
            <View style={{width: 35, height: 35, backgroundColor: '#4CD964', borderRadius: 5, justifyContent: 'center', alignItems: 'center'}}>
               <Image source={Timer} style={{width: 24, height: 24}}></Image>
@@ -54,7 +54,7 @@ export default function Profile({ navigation }) {
               <Text style={{fontSize: 15, fontWeight: '600',marginLeft: 20 }}>Remind me of practice</Text>
           </View>
           <Image source={arrow} style={{width: 29, height: 29, marginLeft: scale(70)}}></Image>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}}>
         <View style={{width: scale(200), flexDirection: 'row', alignItems: 'center'}}>
            <View style={{width: 35, height: 35, backgroundColor: '#FFC727', borderRadius: 5, justifyContent: 'center', alignItems: 'center'}}>
@@ -64,7 +64,7 @@ export default function Profile({ navigation }) {
           </View>
           <Image source={arrow} style={{width: 29, height: 29, marginLeft: scale(70)}}></Image>
         </TouchableOpacity>
-        <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}} onPress={GoHistory}>
+        {/* <TouchableOpacity style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}} onPress={GoHistory}>
         <View style={{width: scale(200), flexDirection: 'row', alignItems: 'center'}}>
            <View style={{width: 35, height: 35, backgroundColor: '#407BFF', borderRadius: 5, justifyContent: 'center', alignItems: 'center'}}>
               <Image source={History} style={{width: 24, height: 24}}></Image>
@@ -72,7 +72,7 @@ export default function Profile({ navigation }) {
               <Text style={{fontSize: 15, fontWeight: '600',marginLeft: 20 }}>History</Text>
           </View>
           <Image source={arrow} style={{width: 29, height: 29, marginLeft: scale(70)}}></Image>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={GoPrivacy} style={{marginTop: 30, width: scale(295), height: 50, borderBottomWidth:1, borderBlockColor: '#EDE7E7', flexDirection: 'row', alignItems: 'center', paddingBottom: 14}}>
         <View style={{width: scale(200), flexDirection: 'row', alignItems: 'center'}}>
            <View style={{width: 35, height: 35, backgroundColor: '#F06A58', borderRadius: 5, justifyContent: 'center', alignItems: 'center'}}>
@@ -81,7 +81,7 @@ export default function Profile({ navigation }) {
               <Text style={{fontSize: 15, fontWeight: '600',marginLeft: 20 }}>Privacy Police</Text>
           </View>
           <Image source={arrow} style={{width: 29, height: 29,marginLeft: scale(70)}}></Image>
-        </TouchableOpacity>
+        </TouchableOpacity> 
         </View>
         <View>
  

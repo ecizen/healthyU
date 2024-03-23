@@ -1,17 +1,24 @@
-import * as React from 'react';
-import { View, StyleSheet, Button , Text, TouchableOpacity, Image} from 'react-native';
-import { Video, ResizeMode, } from 'expo-av';
+import React from 'react';
+import { View, StyleSheet, Text, Image , TouchableOpacity} from 'react-native';
+import { Video, ResizeMode } from 'expo-av';
 
-export default function App() {
-  const [videos, setVideos] = React.useState([
-    require('../img/pushup.mp4'),
-    require('../video/dips.mp4'),
-    require('../video/grip.mp4'),
-  ]);
+export default function VideoScreen({ route }) {
+  const { exercise } = route.params;
+  // Define video sources based on exercise ID
+  const videosByExercise = {
+    1: [require('../video/dips.mp4'),  require('../video/Pushup.mp4')],
+    2: [require('../video/dips.mp4'),  require('../video/Pushup.mp4')],
+    3: [require('../video/Pull up.mp4'),  require('../video/Inverted.mp4')],
+    4: [require('../video/Jumping.mp4'),  require('../video/Step UP.mp4')],
+    5: [require('../video/Sit.mp4'),  require('../video/Crunch.mp4')],
+    // Add more exercise IDs and their corresponding videos as needed
+  };
+
+  const [videos, setVideos] = React.useState(videosByExercise[exercise.id]);
   const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
-  
+
   const playNextVideo = async () => {
     if (currentVideoIndex < videos.length - 1) {
       setCurrentVideoIndex(currentVideoIndex + 1);
@@ -24,7 +31,7 @@ export default function App() {
     await video.current.loadAsync(videos[currentVideoIndex], {}, false);
     await video.current.playAsync();
   };
-  
+
   return (
     <View style={styles.container}>
       <Video
@@ -37,13 +44,13 @@ export default function App() {
         shouldPlay={true}
         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
       />
-      <View>
+        <View>
         <View style={styles.CardTitle}>
-            <Text style={styles.titeExercise}>Push up</Text>
+            <Text style={styles.titeExercise}>{exercise.name}</Text>
         </View>
         <View style={styles.JenisCard}>
-            <Text style={styles.Jenis}>Wide pushup</Text>
-            <Text style={styles.deskripsi}>Place your hands on the floor wider than shoulder-width apart with fingertips facing forward. This is the starting position. Slowly lower your chest to the floor by bending your elbows while inhaling.</Text>
+            <Text style={styles.Jenis}>{exercise.name}</Text>
+            <Text style={styles.deskripsi}>{exercise.deskripsi}</Text>
         </View>
         <View style={styles.cardDamage}>
             <Text style={{fontWeight: 'bold'}}>Area Damage</Text>
@@ -71,6 +78,7 @@ export default function App() {
           onPress={playNextVideo}
         ><Text style={styles.buttonText}>Next</Text></TouchableOpacity>
       </View>
+      {/* Add UI components for other details or controls */}
     </View>
   );
 }
@@ -155,6 +163,5 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 15
   }
-
-
+  // Add more styles as needed
 });

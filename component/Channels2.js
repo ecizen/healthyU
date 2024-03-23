@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, Modal, StyleSheet } from 'react-native';
 import Back from '../img/leftarrow.png';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +10,8 @@ const Chat = () => {
     const [isButtonVisible, setIsButtonVisible] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+
+    
 
     const GoChannels = () => {
         navigation.navigate('Channels');

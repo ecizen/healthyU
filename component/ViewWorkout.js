@@ -13,13 +13,15 @@ export default function ListWorkout({route,navigation}){
 
     const { exercise } = route.params;
 
-   
+    const handlePreview = () => {
+        navigation.navigate('ListWorkout1', { exercise });
+    }
 
     const CloseBack = () =>{
         navigation.navigate('Training')
     }
     const GoStart = () =>{
-        navigation.navigate('Video')
+        navigation.navigate('Video', { exercise: exercise });
     }
     return(
         <SafeAreaView style={styles.container}>
@@ -39,32 +41,99 @@ export default function ListWorkout({route,navigation}){
                     <Text style={styles.min}>30 min</Text>
                     <Text style={styles.beginner}>Beginner</Text>
                 </View>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.cardlist}>
                     <View style={styles.cardlatihan}>
-                    <View style={{flexDirection: 'row', width: 120}}>
+                    <View style={{flexDirection: 'row', width: 160}}>
                         <Image source={foto} style={styles.foto}/>
                         <View style={{marginLeft:10}}>                            
                         <Text style={styles.judullatihan}>{exercise.form}</Text>
                         <Text style={styles.rep}>{exercise.Reps}</Text>
                         </View>
                     </View>
-                        <TouchableOpacity onPress={() =>{ navigation.navigate('Preview')}}><Text style={styles.preview}>Preview</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form })}>
+    <Text style={styles.preview}>Preview</Text>
+</TouchableOpacity>
                     </View>
                     <View style={styles.cardlatihan}>
-                    <View style={{flexDirection: 'row', width: 120}}>
-                    
+                    <View style={{flexDirection: 'row', width: 160}}>
                         <Image source={foto} style={styles.foto}/>
                         <View style={{marginLeft:10}}>                            
                         <Text style={styles.judullatihan}>{exercise.form1}</Text>
                         <Text style={styles.rep}>{exercise.Reps}</Text>
                         </View>
                     </View>
-                        <TouchableOpacity onPress={() =>{ navigation.navigate('Preview')}}><Text style={styles.preview}>Preview</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form1 })}>
+                        <Text style={styles.preview}>Preview</Text>
+                    </TouchableOpacity>
+    
                     </View>
-                </View>
-               
-              
+                    <View style={styles.cardlatihan}>
+                    <View style={{flexDirection: 'row', width: 160}}>
+                        <Image source={foto} style={styles.foto}/>
+                        <View style={{marginLeft:10}}>                            
+                        <Text style={styles.judullatihan}>{exercise.form2}</Text>
+                        <Text style={styles.rep}>{exercise.Reps}</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form2 })}>
+                        <Text style={styles.preview}>Preview</Text>
+                    </TouchableOpacity>
+    
+                    </View>
+                    <View style={styles.cardlatihan}>
+                    <View style={{flexDirection: 'row', width: 160}}>
+                        <Image source={foto} style={styles.foto}/>
+                        <View style={{marginLeft:10}}>                            
+                        <Text style={styles.judullatihan}>{exercise.form3}</Text>
+                        <Text style={styles.rep}>{exercise.Reps}</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form3 })}>
+                        <Text style={styles.preview}>Preview</Text>
+                    </TouchableOpacity>
+    
+                    </View>
+                    <View style={styles.cardlatihan}>
+                    <View style={{flexDirection: 'row', width: 160}}>
+                        <Image source={foto} style={styles.foto}/>
+                        <View style={{marginLeft:10}}>                            
+                        <Text style={styles.judullatihan}>{exercise.form4}</Text>
+                        <Text style={styles.rep}>{exercise.Reps}</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form4 })}>
+                        <Text style={styles.preview}>Preview</Text>
+                    </TouchableOpacity>
+    
+                    </View>
+                    <View style={styles.cardlatihan}>
+                    <View style={{flexDirection: 'row', width: 160}}>
+                        <Image source={foto} style={styles.foto}/>
+                        <View style={{marginLeft:10}}>                            
+                        <Text style={styles.judullatihan}>{exercise.form5}</Text>
+                        <Text style={styles.rep}>{exercise.Reps}</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form5 })}>
+                        <Text style={styles.preview}>Preview</Text>
+                    </TouchableOpacity>
+    
+                    </View>
+                    <View style={styles.cardlatihan}>
+                    <View style={{flexDirection: 'row', width: 160}}>
+                        <Image source={foto} style={styles.foto}/>
+                        <View style={{marginLeft:10}}>                            
+                        <Text style={styles.judullatihan}>{exercise.form6}</Text>
+                        <Text style={styles.rep}>{exercise.Reps}</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity onPress={() => navigation.navigate('Views', { exercise: exercise.form6 })}>
+                        <Text style={styles.preview}>Preview</Text>
+                    </TouchableOpacity>
+    
+                    </View>
+                </View>         
             </ScrollView>
             <View style={styles.btnStart}>
                 <TouchableOpacity onPress={GoStart} style={styles.start}><Text style={{fontSize: 15, fontWeight: '700', color: 'white'}}>Start</Text></TouchableOpacity>
@@ -77,11 +146,12 @@ const styles= StyleSheet.create({
     container : {
         flex: 1,
         backgroundColor: 'white',
-        marginTop: 20
+        marginTop: 20,
+    
     },
     cardlist:{
         width: '100%',
-        height: 700,
+        height: 600,
         backgroundColor:'#F0F0F5',
         alignItems: 'center'
     },
@@ -182,7 +252,7 @@ const styles= StyleSheet.create({
         fontWeight: '500',
         fontSize: 16,
         color: '#2254C5',
-        marginLeft: scale(140)
+        marginLeft: scale(100)
         
     },
     cardlatihanpush:{
@@ -198,7 +268,7 @@ const styles= StyleSheet.create({
     close:{
         width: 30,
         height: 30,
-        left: 295,
+        left: 325,
         top: -36,
     },
     start:{

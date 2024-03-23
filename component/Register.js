@@ -5,7 +5,7 @@ import Logo from '../assets/logo_text.png'
 const { width, height } = Dimensions.get('screen');
 import RegisternUi from '../img/pana.png'
 import Title from '../Prop/title_reg_log'
-import TextInput from '../Prop/Text_input2'
+import Inputs from '../Prop/Text_input2'
 import WithGoogle from '../img/Google.png'
 import WithaApple from '../img/apple.png'
 import WithFacebook from '../img/facebook.png'
@@ -35,20 +35,9 @@ const Slider = ({navigation}) => {
       </View>
       <Title Value={"Sign Up"}></Title>
       <View style={styles.text_input}>
-        <TextInput Placrholder='Username' Placrholder1='Password' Placrholder3='confirm password'></TextInput>
+        <Inputs Placrholder='Username' Placrholder1='Password' Placrholder3='confirm password'></Inputs>
       </View>
-      <View style={{alignItems: 'center', marginTop: scale(15)}}>
-      <TouchableOpacity style={styles.btnLogin}><Text style={{ color: 'white'}} onPress={GoHome}>Sign Up</Text></TouchableOpacity>
-      <Text style={{marginTop: scale(10),fontSize: 12 , color: '#938E8E', fontWeight: '400'}}>Continue with</Text>
-      <View style={styles.loginWith}>
-        <TouchableOpacity style={styles.btn}><Image source={WithGoogle} style={{width: 24, height: 25}}></Image></TouchableOpacity>
-        <TouchableOpacity style={styles.btn}><Image source={WithFacebook} style={{width: 27, height: 27}}></Image></TouchableOpacity>
-      </View>
-      <View style={{flexDirection: 'row', marginTop: 13}}>
-       <Text style={{color: '#938E8E'}}>Do you have account ? </Text>
-       <TouchableOpacity><Text style={{fontWeight: 'bold', color: '#2254C5'}} onPress={Gologin}>Login</Text></TouchableOpacity>
-      </View>
-      </View>
+     
       
     </View>
   );
