@@ -2,9 +2,41 @@ import { View, Text , StyleSheet,Image, TouchableOpacity, ScrollView, placeholde
 import React from 'react'
 import foto from '../img/foto.png'
 import tutor from '../img/tutorpuh.png'
+import { scale } from 'react-native-size-matters'
+
 
 export default function ListWorkout1({navigation , route}){
     const { exercise } = route.params;
+
+    const gambar ={
+        'Pushup': require('../img/push1.png'),
+        'Dips': require('../img/Dips.jpg'),
+        'Pull up' :require('../img/Pull.png'),
+        'Plank': require('../img/Plank.jpg'),
+        'Arm circle': require('../img/Circle.jpeg'),
+        'Supermen': require('../img/Superman.jpg'),
+        'diamond' : require('../img/Diamond.jpg'),
+        'Push up Regular':  require('../img/push1.png'),
+        'Push up Diamond':  require('../img/Diamond.jpg'),
+        'Pike Pushup':  require('../img/Pike.jpeg'),
+        'Tricep Dips': require('../img/Dips.jpg'),
+        'Wide Pushup':  require('../img/Wide.jpg'),
+        'Archer Pushup' :  require('../img/Archer.jpeg'),
+        'Pull up': require('../img/Pull.png'),
+        'Chin Up': require('../img/Chin.jpg'),
+        'Inverted Rows' : require('../img/Inverted.jpg'),
+        'Australian Pull-up:': require('../img/Australian.jpg'),
+        'Reverse Snow Angels': require('../img/Reverse.jpg'),
+        'Menggelantung': require('../img/Hang.png'),
+        'Negative Pull up':  require('../img/Pull.png'),
+        'Jumping Jack':require('../img/Jumping.jpeg') ,
+        'Squad': require('../img/Leg.png'),
+        'Lunges': require('../img/Lunges.jpg'),
+        'Step Ups': require('../img/Step.jpg'),
+        'Calf Raises': require('../img/Calf.jpg'),
+        'Glute Bridge': require('../img/Glute.jpg')
+
+    }
 
     const nama = {
         'Pushup': ' Pushup',
@@ -118,12 +150,14 @@ export default function ListWorkout1({navigation , route}){
     return(
         <SafeAreaView>
             <ScrollView>
-                <Image source={foto} style={style.foto1}/>
+                <Image source={gambar[exercise]} style={style.foto1}/>
                 <View>
                     <Text style={style.judul}>{nama[exercise]} 10 Reps</Text>
+                    <View style={{marginLeft: 20}}>
                     <Text style={style.namalatihan}>{nama[exercise]}</Text>
                     <Text style={style.deskripsi}>{Deskripsi[exercise]}</Text>
                     <Text style={style.damage}>Area Damage</Text>
+                    </View>
                 </View>
                 <View style={style.damagebox}>
                     <Text style={style.damagedesk}>{Damage[exercise]}</Text>
@@ -133,14 +167,17 @@ export default function ListWorkout1({navigation , route}){
                     <Text  style={style.damagedesk}>{Damage2[exercise]}</Text>
                     <View style={style.button}></View>
                 </View>
+                <View style={{alignItems: 'center'}}>
+
                 <View style={style.cardtutor}>
-                    <Image source={tutor} style={style.tutor}/>
+                    <Text style={{fontSize: 16, fontWeight:'600', color: 'black', textAlign: 'center'}}>" Pikirkan betapa jauh kamu bisa pergi, hanya dengan memulai sekarang ".</Text>
+                </View>
                 </View>
                 <View>
-                <View>
-           
-        </View>
+                <View style={{justifyContent: 'center', alignItems:'center'}}>
+                    
                     <TouchableOpacity onPress={() =>{ navigation.navigate('Training')}} style={style.backbutton}><Text style={style.back}>Back</Text></TouchableOpacity>
+                 </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -166,19 +203,17 @@ const style = StyleSheet.create({
         fontWeight: '500'
     },
     namalatihan:{
-        marginTop: 10,
-        left: 10,
+        marginTop: 20,
+       
         fontWeight: '500',
         fontSize: 15
     }, 
     deskripsi:{
         fontSize: 15,
-        left: 10,
         color: '#867B7B',
         marginTop: 8,
     },
     damage:{
-        left: 10,
         fontSize: 15,
         fontWeight:'500',
         marginTop: 10,
@@ -220,27 +255,27 @@ const style = StyleSheet.create({
 
     },
     cardtutor:{
-        width: 340,
+        width: scale(320),
         height: 190,
         backgroundColor: '#CFDDFC',
-        marginLeft: 35,
         borderRadius: 10,
         marginTop: 20,
         alignItems: 'center',
-        alignContent:'center'
+        alignContent:'center',
+        justifyContent: 'center',
+        paddingHorizontal: 20
         
     },
     tutor:{
-        width: 270,
+        width: scale(280),
         height:150,
         marginLeft: 20
     },
     backbutton:{
-        width: 300,
+        width: scale(300),
         height: 50,
         alignItems:'center',
         justifyContent: 'center',
-        marginLeft: 55,
         marginTop:20,
         borderRadius: 10,
         backgroundColor: '#2254C5',

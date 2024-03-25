@@ -34,7 +34,7 @@ const ArtikelPage = ({ route }) => {
 
   const fetchData = async (id) => {
     try {
-      const response = await fetch(`https://2da5-112-78-156-160.ngrok-free.app/articles/${id}`);
+      const response = await fetch(`https://08b6-36-73-32-145.ngrok-free.app/articles/${id}`);
       if (!response.ok) {
         throw new Error('Failed to fetch article data');
       }

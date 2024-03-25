@@ -19,7 +19,7 @@ useEffect(() => {
 
 const fetchData = async () => {
   try {
-    const response = await fetch('https://96bf-112-78-156-160.ngrok-free.app/channels/');
+    const response = await fetch('https://08b6-36-73-32-145.ngrok-free.app/channels');
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }

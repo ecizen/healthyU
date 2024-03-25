@@ -22,7 +22,7 @@ export default function Text_Input({Placrholder, Placrholder1, Placrholder3, }) 
     // Lakukan validasi data jika diperlukan
    
     // Kirim data registrasi ke server menggunakan metode POST
-    fetch('https://3abe-36-64-210-90.ngrok-free.app/users/register', {
+    fetch('https://ea5f-182-2-70-5.ngrok-free.app/users/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

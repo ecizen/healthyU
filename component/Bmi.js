@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { RadioButton } from 'react-native-paper';
 
 import Back from '../img/backnavigator.png';
 import circle from '../img/circle1.png';
 import hitung from '../img/buttoni.png';
+import { scale } from 'react-native-size-matters';
 
 const BMI = () => {
     const [bb, onChangeBB] = useState('');
@@ -12,29 +14,12 @@ const BMI = () => {
     const [umur, onChangeAGE] = useState('');
     const [bmi, setBMI] = useState(null);
     const [bmiCategory, setBMICategory] = useState('');
+    const [gender, setGender] = useState('gender');
 
     const navigation = useNavigation();
 
     const GoHome = () => {
         navigation.navigate('Home');
-    };
-
-    const hitungBMI = () => {
-        const berat = parseFloat(bb);
-        const tinggi = parseFloat(tb) / 100;
-        const bmiCalculation = berat / (tinggi * tinggi);
-        setBMI(bmiCalculation.toFixed(1));
-
-        // Menentukan kategori BMI
-        if (bmiCalculation < 18.5) {
-            setBMICategory('Kurang Berat Badan');
-        } else if (bmiCalculation >= 18.5 && bmiCalculation < 24.9) {
-            setBMICategory('Normal');
-        } else if (bmiCalculation >= 24.9 && bmiCalculation < 29.9) {
-            setBMICategory('Kelebihan Berat Badan');
-        } else {
-            setBMICategory('Obesitas');
-        }
     };
 
     const getBMICategoryColor = () => {
@@ -52,6 +37,32 @@ const BMI = () => {
         }
     };
 
+    const hitungBMI = () => {
+        const berat = parseFloat(bb);
+        const tinggi = parseFloat(tb) / 100;
+
+        // Perhitungan BMI
+        let bmiCalculation;
+        if (gender === 'gender') { // Laki-laki
+            bmiCalculation = berat / (tinggi * tinggi);
+        } else { // Perempuan
+            bmiCalculation = 1.2 * (berat / (tinggi * tinggi)) - 10.8 * (parseFloat(umur) / 100) + 0.23;
+        }
+        
+        setBMI(bmiCalculation.toFixed(1));
+
+        // Menentukan kategori BMI
+        if (bmiCalculation < 18.5) {
+            setBMICategory('Kurang Berat Badan');
+        } else if (bmiCalculation >= 18.5 && bmiCalculation < 24.9) {
+            setBMICategory('Normal');
+        } else if (bmiCalculation >= 24.9 && bmiCalculation < 29.9) {
+            setBMICategory('Kelebihan Berat Badan');
+        } else {
+            setBMICategory('Obesitas');
+        }
+    };
+
     return (
         <View style={{flex:1, backgroundColor: 'white'}}>
             <View style={styles.header}>
@@ -60,6 +71,7 @@ const BMI = () => {
                 </TouchableOpacity>
                 <Text style={styles.headerText}>BMI</Text>
             </View>
+            <ScrollView>
 
             <Text style={styles.resultText}>Anda <Text style={[styles.bmiText, getBMICategoryColor()]}>{bmiCategory}</Text></Text>
 
@@ -68,41 +80,62 @@ const BMI = () => {
                 <Text style={styles.bmiValue}>{bmi !== null ? bmi : '0'}</Text>
             </View>
             <View style={{alignItems: 'center'}}>
-            <Text style={{marginTop: 70 ,fontSize: 15, fontWeight: 'bold'}}>Anda ditetapkan {bmiCategory} oleh bmi</Text>
+                <Text style={{marginTop: 70 ,fontSize: 15, fontWeight: 'bold'}}>Anda ditetapkan {bmiCategory} oleh bmi</Text>
 
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Berat Badan</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeBB}
-                    value={bb}
-                    placeholder='Berat Badan'
-                    placeholderTextColor='#B9A5A5'
-                    keyboardType='numeric'
-                />
-                <Text style={styles.inputLabel}>Tinggi Badan</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeTB}
-                    value={tb}
-                    placeholder='Tinggi Badan'
-                    placeholderTextColor='#B9A5A5'
-                    keyboardType='numeric'
-                />
-                <Text style={styles.inputLabel}>Umur</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeAGE}
-                    value={umur}
-                    placeholder='Umur'
-                    placeholderTextColor='#B9A5A5'
-                    keyboardType='numeric'
-                />
-                <TouchableOpacity onPress={hitungBMI}>
-                    <Image source={hitung} style={styles.buttonImage} />
-                </TouchableOpacity>
+                <View style={styles.inputContainer}>
+                    <Text style={styles.inputLabel}>Berat Badan</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeBB}
+                        value={bb}
+                        placeholder='Berat Badan'
+                        placeholderTextColor='#B9A5A5'
+                        keyboardType='numeric'
+                    />
+                    <Text style={styles.inputLabel}>Tinggi Badan</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeTB}
+                        value={tb}
+                        placeholder='Tinggi Badan'
+                        placeholderTextColor='#B9A5A5'
+                        keyboardType='numeric'
+                    />
+                    <Text style={styles.inputLabel}>Umur</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeAGE}
+                        value={umur}
+                        placeholder='Umur'
+                        placeholderTextColor='#B9A5A5'
+                        keyboardType='numeric'
+                    />
+                    <Text style={styles.inputLabel}>Pilih Gender</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                            <RadioButton
+                                value="gender"
+                                status={ gender === 'gender' ? 'checked' : 'unchecked' }
+                                onPress={() => setGender('gender')}
+                            />
+                            <Text style={styles.gender}>Laki - Laki</Text>
+                        </View>
+                        <View style={{marginLeft: 40, flexDirection: 'row'}}>
+                            <RadioButton
+                                value="female"
+                                status={ gender === 'female' ? 'checked' : 'unchecked' }
+                                onPress={() => setGender('female')}
+                            />
+                            <Text style={styles.gender}>Perempuan</Text>
+                        </View>
+                    </View>
+                    <TouchableOpacity onPress={hitungBMI}>
+                        <Image source={hitung} style={styles.buttonImage} />
+                    </TouchableOpacity>
+                    
+                </View>
             </View>
-            </View>
+                </ScrollView>
         </View>
     );
 };
@@ -128,13 +161,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 20,
     },
-    categoryText: {
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#2254C5',
-        marginBottom: 20,
-    },
     circleContainer: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -152,7 +178,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     inputContainer: {
-        
         marginTop: 10,
     },
     inputLabel: {
@@ -179,6 +204,9 @@ const styles = StyleSheet.create({
     },
     bmiText: {
         fontWeight: 'bold',
+    },
+    gender: {
+        top: scale(5)
     },
     normalText: {
         color: 'green',

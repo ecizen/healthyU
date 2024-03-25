@@ -4,6 +4,8 @@ import Back from '../img/backnavigator.png';
 import { useNavigation } from '@react-navigation/native';
 import plus from '../img/Plus.png';
 import moon from '../img/Moon.png';
+import walk from '../img/Walking.png';
+
 import { CheckBox } from 'react-native-elements';
 
 const Habbit = () => {
@@ -16,7 +18,7 @@ const Habbit = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('https://2da5-112-78-156-160.ngrok-free.app/habits');
+            const response = await fetch('https://94c5-112-78-156-160.ngrok-free.app/habits');
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -29,7 +31,7 @@ const Habbit = () => {
 
     const handleCheckboxChange = async (itemId) => {
         try {
-            const response = await fetch(`https://2da5-112-78-156-160.ngrok-free.app/habits/${itemId}`, {
+            const response = await fetch(`https://08b6-36-73-32-145.ngrok-free.app/habits/${itemId}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
@@ -43,6 +45,19 @@ const Habbit = () => {
         }
     };
 
+    const getImageSource = (title) => {
+        switch (title) {
+            case 'Run':
+                return walk; // Return the walk image source for the 'Run' activity
+            case 'Sleep':
+                return moon; // Return the moon image source for the 'Sleep' activity
+            // Add cases for other activities if needed
+            default:
+                return null; // Return null for unknown activities
+        }
+    };
+    
+
     const handleRefresh = () => {
         fetchData();
     };
@@ -52,7 +67,7 @@ const Habbit = () => {
             {/* habit */}
             <View style={{ backgroundColor: '#2254C5', width: 350, height: 99, borderRadius: 10, justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Image source={moon} style={{ width: 35, height: 35, marginLeft: 20, marginRight: 16 }} />
+                    <Image source={getImageSource(item.title)}  style={{ width: 35, height: 35, marginLeft: 20, marginRight: 16 }} />
                     <View style={{ flexDirection: 'column' }}>
                         <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'white' }}>{item.title}</Text>
                         <Text style={{ fontSize: 15, color: 'white' }}>Selesai</Text>

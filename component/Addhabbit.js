@@ -3,28 +3,45 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Back from '../img/backnavigator.png';
 import { useNavigation } from '@react-navigation/native';
 import walk from '../img/Walking.png';
-
+import moon from '../img/Moon.png';
 const AddHabbit = () => {
     const navigation = useNavigation();
     const [selectedActivity, setSelectedActivity] = useState(null);
 
     const handleSelectActivity = (activity) => {
+        let imageSource = null; // Initialize imageSource variable
+    
+        // Set imageSource based on the selected activity
+        switch (activity) {
+            case 'Run':
+                imageSource = walk; // Set image source to walk for Run activity
+                break;
+            case 'Sleep':
+                imageSource = moon; // Set image source to moon for Sleep activity
+                break;
+            // Add cases for other activities if needed
+            default:
+                // Handle default case
+                break;
+        }
+    
         if (selectedActivity === activity) {
             setSelectedActivity(null);
         } else {
             setSelectedActivity(activity);
-            handlePostApi(activity); // Pass selected activity to handlePostApi
+            handlePostApi(activity, imageSource); // Pass selected activity and imageSource to handlePostApi
         }
     };
+    
     
 
     const GoHome = () => {
         navigation.navigate('Habbit');
     };
 
-    const handlePostApi = async (activity) => { // Receive selected activity as an argument
+    const handlePostApi = async (activity, imageSource) => { // Receive selected activity as an argument
         try {
-            const response = await fetch('https://2da5-112-78-156-160.ngrok-free.app/habits', {
+            const response = await fetch('https://94c5-112-78-156-160.ngrok-free.app/habits', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,6 +49,7 @@ const AddHabbit = () => {
                 body: JSON.stringify({
                     title: activity, // Set selected activity as title
                     description: 'Running enhances cardiovascular health, promotes weight loss, strengthens bones, and boosts mood, contributing to overall well-being.', // Set description
+                    image: imageSource, 
                 }),
             });
             const data = await response.json();
@@ -75,8 +93,8 @@ const AddHabbit = () => {
                         selectedActivity === 'Sleep' && { backgroundColor: '#2254C5' },
                     ]}
                 >
-                    <Image source={walk} style={styles.activityIcon} />
-                    <Text style={[styles.activityText, selectedActivity === 'Sleep' && { color: 'white' }]}>Run</Text>
+                    <Image source={moon} style={styles.activityIcon} />
+                    <Text style={[styles.activityText, selectedActivity === 'Sleep' && { color: 'white' }]}>Sleep</Text>
                     <Text style={[styles.activityDescription, selectedActivity === 'Sleep' && { color: 'white' }]}>
                         Running enhances cardiovascular health, promotes weight loss, strengthens bones, and boosts mood, contributing to overall well-being.
                     </Text>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, StyleSheet, FlatList, Linking } from 'react-native';
 
 import Back from '../img/backnavigator.png'
 import Bigwhey from '../img/BigWhey.png'
@@ -8,7 +8,6 @@ import Vitamin from '../img/Vitamin.png'
 import Gainer from '../img/Gainer.png'
 import Whey from '../img/Whey.png'
 import { scale } from 'react-native-size-matters';
-
 
 const Suplement = () => {
     const navigation = useNavigation();
@@ -20,13 +19,12 @@ const Suplement = () => {
     const [activeItem, setActiveItem] = useState(0);
 
     const products = [
-      { id: 'whey', label: 'Whey', image: Whey },
-      { id: 'bigwhey', label: 'Big Whey', image: Bigwhey },
-      { id: 'gainer', label: 'Gainer', image: Gainer },
-      { id: 'vitamin', label: 'Vitamin', image: Vitamin }
-  ];
+        { id: 'whey', label: 'Whey', image: Whey },
+        { id: 'bigwhey', label: 'Big Whey', image: Bigwhey },
+        { id: 'gainer', label: 'Gainer', image: Gainer },
+        { id: 'vitamin', label: 'Vitamin', image: Vitamin }
+    ];
   
-
     const items = [
         { id: 'all', label: 'All Item' },
         { id: 'protein', label: 'Protein' },
@@ -35,17 +33,23 @@ const Suplement = () => {
         { id: 'vitamin', label: 'Vitamin' }
     ];
 
+    const handleBuy = (product) => {
+        // Redirect to the website to purchase the product
+        let url = 'https://www.tokopedia.com/evoleneofficial/evowhey-evolene-whey-protein-50-sachet-suplemen-fitness-coklat?extParam=ivf%3Dfalse&src=topads'; // Add your product purchase URL here
+        Linking.openURL(url);
+    };
 
     const renderItem = ({ item, index }) => {
-    if (text !== '' && !item.id.toLowerCase().includes(text.toLowerCase()) && !item.label.toLowerCase().includes(text.toLowerCase())) {
-        return null;
-    }
-    return (
-        <TouchableOpacity style={{marginLeft: 12}} onPress={() => setActiveItem(index)}>
-            <Text style={{ marginHorizontal: 9, fontWeight: activeItem === index ? 'bold' : 'normal' }}>{item.label}</Text>
-        </TouchableOpacity>
-    );
-};
+        if (text !== '' && !item.id.toLowerCase().includes(text.toLowerCase()) && !item.label.toLowerCase().includes(text.toLowerCase())) {
+            return null;
+        }
+        return (
+            <TouchableOpacity style={{marginLeft: 12}} onPress={() => setActiveItem(index)}>
+                <Text style={{ marginHorizontal: 9, fontWeight: activeItem === index ? 'bold' : 'normal' }}>{item.label}</Text>
+            </TouchableOpacity>
+        );
+    };
+
     return (
         <View style={{}}>
             <View style={{ flexDirection: 'row', marginTop: 50, margin: 20, alignItems: 'center' }}>
@@ -78,61 +82,21 @@ const Suplement = () => {
                         <Text style={{ fontSize: 14, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Interested</Text>
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                             <View style={styles.productcontent}>
-                                <View style={styles.card}><Image style={styles.productimg} source={Whey} /><Text style={{marginTop: 10}}>Whey</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                                <View style={styles.card}><Image style={styles.productimg} source={Bigwhey} /><Text style={{marginTop: 10}}>Whey 1.8 kg</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                                <View style={styles.card}><Image style={styles.productimg} source={Gainer} /><Text style={{marginTop: 10}}>Gainer</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                                <View style={styles.card}><Image style={styles.productimg} source={Vitamin} /><Text style={{marginTop: 10}}>Vitamin</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
+                                {products.map((product) => (
+                                    <TouchableOpacity >
+                                        <View style={styles.card}>
+                                            <Image style={styles.productimg} source={product.image} />
+                                            <Text style={{marginTop: 10}}>{product.label}</Text>
+                                            <TouchableOpacity key={product.id} onPress={() => handleBuy(product)} style={styles.buyButton}><Text style={{color: 'white'}}>Buy</Text></TouchableOpacity>
+                                        </View>
+                                    </TouchableOpacity>
+                                ))}
                             </View>
                         </ScrollView>
-                        <Text style={{ fontSize: 14, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Recommendation</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={{ flexDirection: 'row', marginBottom: 20 }}>
-                                {/* Your recommendation product cards */}
-                            </View>
-                        </ScrollView>
+                        {/* Recommendation section */}
                     </View>
                 )}
-                {activeItem === 1 && (
-                    <View>
-                        <Text style={{ fontSize: 14, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Whey Protein</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={styles.productcontent}>
-                                <View style={styles.card}><Image style={styles.productimg} source={Whey} /><Text style={{marginTop: 10}}>Whey</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                                <View style={styles.card}><Image style={styles.productimg} source={Bigwhey} /><Text style={{marginTop: 10}}>Whey 1.8 kg</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                            </View>
-                        </ScrollView>
-                    </View>
-                )}
-                {activeItem === 2 && (
-                    <View>
-                        <Text style={{ fontSize: 14, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Gainer</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={styles.productcontent}>
-                                <View style={styles.card}><Image style={styles.productimg} source={Gainer} /><Text style={{marginTop: 10}}>Gainer</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                            </View>
-                        </ScrollView>
-                    </View>
-                )}
-                {activeItem === 3 && (
-                    <View>
-                        <Text style={{ fontSize: 14, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Booster</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={styles.productcontent}>
-                                {/* Content for booster */}
-                            </View>
-                        </ScrollView>
-                    </View>
-                )}
-                {activeItem === 4 && (
-                    <View>
-                        <Text style={{ fontSize: 14, fontWeight: 'bold', marginTop: 20, marginBottom: 10 }}>Vitamin</Text>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <View style={styles.productcontent}>
-                                <View style={styles.card}><Image style={styles.productimg} source={Vitamin} /><Text style={{marginTop: 10}}>Vitamin</Text><Text style={{backgroundColor: '#2254C5', color: 'white', borderRadius: 5, paddingHorizontal: 20, marginTop: 10, fontSize: 10, textAlign: 'center'}}>Buy</Text></View>
-                            </View>
-                        </ScrollView>
-                    </View>
-                )}
+                {/* Other sections for different product categories */}
             </ScrollView>
         </View>
     );
@@ -152,12 +116,23 @@ const styles = StyleSheet.create({
         marginRight: 14
     },
     productimg: {
-      width: 72,
-      height: 72,
+        width: 72,
+        height: 72,
     },
     productcontent: {
-      flexDirection: 'row',
-      gap: 10
+        flexDirection: 'row',
+        gap: 10
+    },
+    buyButton: {
+        height: 30,
+        justifyContent: 'center',
+        backgroundColor: '#2254C5',
+        color: 'white',
+        borderRadius: 5,
+        paddingHorizontal: 20,
+        marginTop: 10,
+        fontSize: 10,
+        textAlign: 'center'
     }
 });
 

@@ -18,7 +18,7 @@ export default function Text_Input({ Placrholder, Placrholder1 , EmailInput, Pas
 
   const handleLogin = () => {
     // Kirim data login ke server menggunakan metode POST
-    fetch('https://3abe-36-64-210-90.ngrok-free.app/users/login', {
+    fetch('https://ea5f-182-2-70-5.ngrok-free.app/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,9 +36,7 @@ export default function Text_Input({ Placrholder, Placrholder1 , EmailInput, Pas
       })
       .then(data => {
         Alert.alert('Login Successful', 'Welcome back!');
-        GoHome();
-        // Handle response data setelah berhasil login
-        // Contoh: menyimpan token di AsyncStorage, dll.
+        GoHome(username); // Pass the username to the home screen
       })
       .catch(error => {
         // Handle error jika login gagal

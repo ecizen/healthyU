@@ -1,5 +1,5 @@
-import { View, Text , StyleSheet,Image, TouchableOpacity,  FlatList, Switch, ImageBackground } from 'react-native'
-import React from 'react'
+import { View, Text , StyleSheet,Image, TouchableOpacity,  FlatList, Switch, ImageBackground, } from 'react-native'
+import React, {useState, useEffect} from 'react'
 
 import { useNavigation } from '@react-navigation/native';
 import Nav from '../component/Nav'
@@ -45,7 +45,10 @@ const TRENDING = [
 
 
 
+
 export default function Home({navigation}) {
+
+  
 
   const renderItem = ({ item,  }) => (
   

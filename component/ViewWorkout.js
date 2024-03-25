@@ -252,7 +252,7 @@ const styles= StyleSheet.create({
         fontWeight: '500',
         fontSize: 16,
         color: '#2254C5',
-        marginLeft: scale(100)
+        marginLeft: scale(80)
         
     },
     cardlatihanpush:{
